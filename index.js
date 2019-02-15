@@ -1,13 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const cors = require('cors');
 const keys = require('./config/keys');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express();
+app.use(morgan('combined'));
 app.use(cors());
 app.use(bodyParser.json());
 
