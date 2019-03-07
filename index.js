@@ -15,11 +15,11 @@ app.use(bodyParser.json());
 
 
 if(['production', 'ci'].includes(process.env.NODE_ENV)){
-  app.use(express.static('client/build'));
+  app.use(express.static('client-web/build'));
 
   const path = require('path');
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve('client', 'build', 'index.html'));
+    res.sendFile(path.resolve('client-web', 'build', 'index.html'));
   });
 }
 
